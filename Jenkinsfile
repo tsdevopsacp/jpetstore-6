@@ -26,7 +26,7 @@ pipeline {
 
     stage('Package') {
       steps {
-        sh './mvnw package'
+        sh './mvnw package -DskipTests=true'
       }
     }
 
