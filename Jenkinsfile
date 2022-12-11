@@ -32,7 +32,7 @@ pipeline {
 
     stage('Deploy to Nexus') {
       steps {
-        sh 'mvn clean deploy -Dmaven.test.skip=true'
+        sh './mvnw deploy'
       }
     }
 
