@@ -14,5 +14,11 @@ pipeline {
       }
     }
 
+    stage('Static Analysis') {
+      steps {
+        sh 'mvn sonar:sonar -Dsonar.host.url=http://44.199.241.35:9000/ -Dlicense.skip=true'
+      }
+    }
+
   }
 }
