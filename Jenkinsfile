@@ -16,7 +16,10 @@ pipeline {
 
     stage('Static Analysis') {
       steps {
-        sh './mvnw sonar:sonar -Dsonar.host.url=http://44.199.241.35:9000/ -Dsonar.projectKey=JPetstore -Dlicense.skip=true'
+        sh '''./mvnw sonar:sonar \\
+-Dsonar.host.url=http://44.199.241.35:9000/ \\
+-Dsonar.projectKey=JPetstore \\
+-Dsonar.login=sqp_4505d30134524c4bce45ca1528f2356257076e44'''
       }
     }
 
