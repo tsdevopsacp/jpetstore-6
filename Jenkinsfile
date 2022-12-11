@@ -32,7 +32,7 @@ pipeline {
 
     stage('Deploy to Nexus') {
       steps {
-        sh './mvnw deploy'
+        nexusArtifactUploader(nexusVersion: '3.4', protocol: 'http', nexusUrl: '44.203.142.100:8081', groupId: 'tsdevopsacp', version: '1.0.0', repository: 'JPetsore', credentialsId: 'admin')
       }
     }
 
