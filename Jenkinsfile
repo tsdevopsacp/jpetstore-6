@@ -18,7 +18,7 @@ pipeline {
     stage('Static Analysis') {
       steps {
         sh '''./mvnw sonar:sonar \\
--Dsonar.host.url=http://44.199.241.35:9000/ \\
+-Dsonar.host.url=http://localhost:9000/ \\
 -Dsonar.projectKey=JPetstore \\
 -Dsonar.login=sqp_4505d30134524c4bce45ca1528f2356257076e44'''
       }
@@ -32,7 +32,7 @@ pipeline {
 
     stage('Deploy to Nexus') {
       steps {
-        nexusArtifactUploader(nexusVersion: '3.4', protocol: 'http', nexusUrl: '44.203.142.100:8081', groupId: 'tsdevopsacp', version: '1.0.0', repository: 'JPetsore', credentialsId: 'admin')
+        nexusArtifactUploader(nexusVersion: '3.4', protocol: 'http', nexusUrl: 'localhost:8081', groupId: 'tsdevopsacp', version: '1.0.0', repository: 'JPetsore', credentialsId: 'admin', artifacts: '**/target/.war')
       }
     }
 
