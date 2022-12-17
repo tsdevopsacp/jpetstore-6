@@ -32,7 +32,7 @@ pipeline {
 
     stage('Deploy to Nexus') {
       steps {
-        nexusArtifactUploader(nexusVersion: '3.4', protocol: 'http', nexusUrl: 'localhost:8081', groupId: 'tsdevopsacp', version: '1.0.0', repository: 'JPetsore', credentialsId: 'admin', artifacts: '**/target/.war')
+        nexusArtifactUploader(nexusVersion: '3.4', protocol: 'http', nexusUrl: 'localhost:8081', groupId: 'tsdevopsacp', version: '1.0.0', repository: 'JPetsore', credentialsId: 'admin', artifacts: 'target/*.war')
       }
     }
 
