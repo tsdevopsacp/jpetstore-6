@@ -41,10 +41,10 @@ pipeline {
           repository: 'JPetsore',
           credentialsId: 'admin',
           artifacts: [
-            artifactId: projectName,
+            [artifactId: projectName,
             classifier: '',
             file: 'jpetstore-' + version + '.war',
-            type: 'war'
+            type: 'war']
           ]    
         )
       }
