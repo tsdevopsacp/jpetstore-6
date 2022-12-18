@@ -37,8 +37,19 @@ pipeline {
     }
 
     stage('Deploy') {
-      steps {
-        sh './mvnw cargo:run -P tomcat90'
+      parallel {
+        stage('Deploy') {
+          steps {
+            sh './mvnw cargo:run -P tomcat90'
+          }
+        }
+
+        stage('Integration Test') {
+          steps {
+            sh './mvnw clean verify -P tomcat90'
+          }
+        }
+
       }
     }
 
