@@ -32,23 +32,14 @@ pipeline {
 
     stage('Deploy to Nexus') {
       steps {
-        nexusArtifactUploader(
-          nexusVersion: '3.4',
-          protocol: 'http',
-          nexusUrl: 'localhost:8081',
-          groupId: 'tsdevopsacp',
-          version: '1.0.0',
-          repository: 'JPetsore',
-          credentialsId: 'admin',
-          artifacts: [
-            [artifactId: projectName,
-            classifier: '',
-            file: 'jpetstore-' + version + '.war',
-            type: 'war']
-          ]    
-        )
+        nexusArtifactUploader(nexusVersion: '3.4', protocol: 'http', nexusUrl: 'localhost:8081', groupId: 'tsdevopsacp', version: '1.0.0', repository: 'JPetsore', credentialsId: 'nexus-user-credentials', artifacts: [
+                      [artifactId: projectName,
+                      classifier: '',
+                      file: 'jpetstore-' + version + '.war',
+                      type: 'war']
+                    ])
+        }
       }
-    }
 
+    }
   }
-}
