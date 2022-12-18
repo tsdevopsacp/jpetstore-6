@@ -31,5 +31,11 @@ pipeline {
       }
     }
 
+    stage('Deploy') {
+      steps {
+        sh './mvnw cargo:run -P tomcat90'
+      }
+    }
+
   }
 }
