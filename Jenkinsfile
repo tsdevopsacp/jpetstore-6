@@ -23,7 +23,7 @@ pipeline {
     stage('Static Analysis') {
       steps {
         sh '''./mvnw sonar:sonar \\
--Dsonar.host.url=http://localhost:9000/ \\
+-Dsonar.host.url=http://172.31.86.101:9000/ \\
 -Dsonar.projectKey=JPetstore \\
 -Dsonar.login=sqp_e37fb7ba3390a02c38dc33140e7eeb3e1cc5a568'''
       }
