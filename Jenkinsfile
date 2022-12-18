@@ -37,19 +37,16 @@ pipeline {
     }
 
     stage('Deploy') {
-      parallel {
-        stage('Deploy') {
-          steps {
-            sh './mvnw cargo:run -P tomcat90'
-          }
-        }
+      steps {
+        sh '''nohup ./mvnw cargo:run -P tomcat90 > log.txt 2>&1 &
+echo $! > pid.file'''
+      }
+    }
 
-        stage('Integration Test') {
-          steps {
-            sh './mvnw clean verify -P tomcat90'
-          }
-        }
-
+    stage('Integration Test') {
+      steps {
+        sh './mvnw clean verify -P tomcat90'
+        sh 'kill $(cat pid.file)'
       }
     }
 
