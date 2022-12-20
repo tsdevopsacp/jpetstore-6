@@ -31,5 +31,11 @@ pipeline {
       }
     }
 
+    stage('Deploy to CD') {
+      steps {
+        build 'JPetstore-CD/Code Checkout'
+      }
+    }
+
   }
 }
