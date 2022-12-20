@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    node {
-      label 'test'
-    }
-
-  }
+  agent any
   stages {
     stage('Build') {
       steps {
@@ -32,21 +27,7 @@ pipeline {
     stage('Package') {
       steps {
         sh './mvnw package -DskipTests=true'
-        archiveArtifacts '**/target/*.war'
-      }
-    }
-
-    stage('Deploy') {
-      steps {
-        sh '''nohup ./mvnw cargo:run -P tomcat90 > log.txt 2>&1 &
-echo $! > pid.file'''
-      }
-    }
-
-    stage('Integration Test') {
-      steps {
-        sh './mvnw clean verify -P tomcat90'
-        sh 'kill $(cat pid.file)'
+        archiveArtifacts '**'
       }
     }
 
