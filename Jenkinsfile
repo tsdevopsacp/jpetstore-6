@@ -44,8 +44,7 @@ pipeline {
 
     stage('Deploy to Staging') {
       steps {
-        sh '''nohup ./mvnw cargo:run -P tomcat90 > log.txt 2>&1 &
-echo $! > pid.file'''
+        sh './mvnw cargo:run -P tomcat90'
       }
     }
 
