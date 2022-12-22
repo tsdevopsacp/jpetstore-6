@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'test'
+    }
+
+  }
   stages {
     stage('Build') {
       steps {
@@ -33,7 +38,7 @@ pipeline {
 
     stage('FT') {
       steps {
-        sh './mvnw verify'
+        sh './mvnw clean verify -P tomcat90'
       }
     }
 
