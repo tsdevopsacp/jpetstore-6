@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    node {
-      label 'test'
-    }
-
-  }
+  agent none
   stages {
     stage('Build') {
       steps {
@@ -38,14 +33,19 @@ pipeline {
 
     stage('Integration Test') {
       steps {
-        sh './mvnw verify -P tomcat90'
+        node(label: 'test') {
+          sh './mvnw verify -P tomcat90'
+        }
+
       }
     }
 
     stage('Deploy to Staging') {
       steps {
-        sh '''nohup ./mvnw cargo:run -P tomcat90 </dev/null &>/dev/null &
-echo $! > pid.file'''
+        node(label: 'test') {
+          sh './mvnw cargo:run -P tomcat90'
+        }
+
       }
     }
 
