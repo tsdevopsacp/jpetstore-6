@@ -38,7 +38,7 @@ pipeline {
 
     stage('Integration Test') {
       steps {
-        sh './mvnw clean verify -P tomcat90'
+        sh './mvnw verify -P tomcat90'
       }
     }
 
