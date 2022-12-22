@@ -40,14 +40,5 @@ pipeline {
       }
     }
 
-    stage('Deploy to Staging') {
-      steps {
-        node(label: 'test') {
-          sh './mvnw cargo:run -P tomcat90'
-        }
-
-      }
-    }
-
   }
 }
