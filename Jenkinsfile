@@ -31,9 +31,9 @@ pipeline {
       }
     }
 
-    stage('Deploy to CD') {
+    stage('FT') {
       steps {
-        build 'JPetstore-CD/Code Checkout'
+        sh './mvnw verify'
       }
     }
 
