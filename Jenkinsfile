@@ -36,9 +36,17 @@ pipeline {
       }
     }
 
-    stage('FT') {
+    stage('Integration Test') {
       steps {
         sh './mvnw clean verify -P tomcat90'
+      }
+    }
+
+    stage('Deploy to Staging') {
+      steps {
+        sh '''./mvnw cargo:run -P tomcat90 </dev/null &>/dev/null &
+echo $! > pid.file
+wget -q --output-document - http://localhost:8080/jpetstore'''
       }
     }
 
