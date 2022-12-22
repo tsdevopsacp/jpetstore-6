@@ -45,8 +45,7 @@ pipeline {
     stage('Deploy to Staging') {
       steps {
         sh '''nohup ./mvnw cargo:run -P tomcat90 > log.txt 2>&1 &
-echo $! > pid.file
-wget -q --output-document - http://localhost:8080/jpetstore'''
+echo $! > pid.file'''
       }
     }
 
