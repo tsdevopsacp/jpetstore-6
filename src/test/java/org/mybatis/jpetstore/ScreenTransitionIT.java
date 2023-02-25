@@ -14,6 +14,7 @@
  *    limitations under the License.
  */
 package org.mybatis.jpetstore;
+//new comment
 
 import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.CollectionCondition.size;
