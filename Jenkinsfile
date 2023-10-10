@@ -1,9 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('error') {
       steps {
         echo 'First commit'
+        sh './mvnw clean compile'
       }
     }
 
